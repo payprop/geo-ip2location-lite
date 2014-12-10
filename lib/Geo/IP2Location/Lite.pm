@@ -411,8 +411,6 @@ The get_country method has been added to get both short and long in one call:
 The ISO-3166 code for United Kingdom of Great Britain and Northern Ireland has
 been corrected from B<UK> to B<GB>
 
-=back
-
 =head1 SEE ALSO
 
 L<Geo::IP2Location>

@@ -20,7 +20,7 @@ support only
 
 This module is a lightweight version of Geo::IP2Location that is compatible
 with **IPv4** BIN files only. It fixes all the current issues against the
-current version of Geo::IP2Location and makes the perl more idomatic (and
+current version of Geo::IP2Location and makes the perl more idiomatic (and
 thus easier to maintain). The code is also compatible with older perls
 ([Geo::IP2Location](https://metacpan.org/pod/Geo::IP2Location) currently only works with 5.14 and above).
 
@@ -59,11 +59,3 @@ Copyright (c) 2014 IP2Location.com
 
 All rights reserved. This package is free software; It is licensed under the
 GPL.
-
-# POD ERRORS
-
-Hey! **The above document had some coding errors, which are explained below:**
-
-- Around line 414:
-
-    &#x3d;back without =over
