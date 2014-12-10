@@ -1,0 +1,11 @@
+Changes
+Makefile.PL
+LICENSE.TXT
+COPYING
+MANIFEST
+README
+t/0_module.t
+t/1_lookup.t
+lib/Geo/IP2Location/Lite.pm
+samples/IP-COUNTRY-SAMPLE.BIN
+samples/WHERE_TO_DOWNLOAD_MORE_SAMPLES.TXT
