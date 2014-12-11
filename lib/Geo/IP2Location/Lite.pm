@@ -226,7 +226,7 @@ sub get_record {
 							$obj->read32( $handle,$baseaddr + ( $mid * $dbcolumn * 4 ) + 4 * ( $POSITIONS->{$pos}[$dbtype] -1 ) )
 						);
 
-						if ( $mode == $COUNTRYSHORT && $return_val eq 'UK' ) {
+						if ( $pos == $COUNTRYSHORT && $return_val eq 'UK' ) {
 							$return_val = 'GB';
 						}
 
