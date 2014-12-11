@@ -350,7 +350,7 @@ support only
 
 =for html
 <a href='https://travis-ci.org/leejo/geo-ip2location-lite?branch=master'><img src='https://travis-ci.org/leejo/geo-ip2location-lite.svg?branch=master' alt='Build Status' /></a>
-<a href='https://coveralls.io/r/leejo/geo-ip2location-lite?branch=master'><img src='https://coveralls.io/repos/leejo/geo-ip2location-lite.png?branch=master' alt='Coverage Status' /></a>
+<a href='https://coveralls.io/r/leejo/geo-ip2location-lite?branch=master'><img src='https://coveralls.io/repos/leejo/geo-ip2location-lite/badge.png?branch=master' alt='Coverage Status' /></a>
 
 =head1 SYNOPSIS
 
