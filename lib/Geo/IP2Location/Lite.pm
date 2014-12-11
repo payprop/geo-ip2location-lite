@@ -20,41 +20,40 @@ use strict;
 use warnings;
 
 use bigint;
-use Readonly;
 
 $Geo::IP2Location::Lite::VERSION = '0.01';
 
-Readonly my $UNKNOWN            => "UNKNOWN IP ADDRESS";
-Readonly my $NO_IP              => "MISSING IP ADDRESS";
-Readonly my $INVALID_IP_ADDRESS => "INVALID IP ADDRESS";
-Readonly my $NOT_SUPPORTED      => "This parameter is unavailable in selected .BIN data file. Please upgrade data file.";
-Readonly my $MAX_IPV4_RANGE     => 4294967295;
+my $UNKNOWN            = "UNKNOWN IP ADDRESS";
+my $NO_IP              = "MISSING IP ADDRESS";
+my $INVALID_IP_ADDRESS = "INVALID IP ADDRESS";
+my $NOT_SUPPORTED      = "This parameter is unavailable in selected .BIN data file. Please upgrade data file.";
+my $MAX_IPV4_RANGE     = 4294967295;
 
-Readonly my $COUNTRYSHORT       => 1;
-Readonly my $COUNTRYLONG        => 2;
-Readonly my $REGION             => 3;
-Readonly my $CITY               => 4;
-Readonly my $ISP                => 5;
-Readonly my $LATITUDE           => 6;
-Readonly my $LONGITUDE          => 7;
-Readonly my $DOMAIN             => 8;
-Readonly my $ZIPCODE            => 9;
-Readonly my $TIMEZONE           => 10;
-Readonly my $NETSPEED           => 11;
-Readonly my $IDDCODE            => 12;
-Readonly my $AREACODE           => 13;
-Readonly my $WEATHERSTATIONCODE => 14;
-Readonly my $WEATHERSTATIONNAME => 15;
-Readonly my $MCC                => 16;
-Readonly my $MNC                => 17;
-Readonly my $MOBILEBRAND        => 18;
-Readonly my $ELEVATION          => 19;
-Readonly my $USAGETYPE          => 20;
+my $COUNTRYSHORT       = 1;
+my $COUNTRYLONG        = 2;
+my $REGION             = 3;
+my $CITY               = 4;
+my $ISP                = 5;
+my $LATITUDE           = 6;
+my $LONGITUDE          = 7;
+my $DOMAIN             = 8;
+my $ZIPCODE            = 9;
+my $TIMEZONE           = 10;
+my $NETSPEED           = 11;
+my $IDDCODE            = 12;
+my $AREACODE           = 13;
+my $WEATHERSTATIONCODE = 14;
+my $WEATHERSTATIONNAME = 15;
+my $MCC                = 16;
+my $MNC                = 17;
+my $MOBILEBRAND        = 18;
+my $ELEVATION          = 19;
+my $USAGETYPE          = 20;
 
-Readonly my $NUMBER_OF_FIELDS   => 20;
-Readonly my $ALL                => 100;
+my $NUMBER_OF_FIELDS   = 20;
+my $ALL                = 100;
 
-Readonly my $POSITIONS => {
+my $POSITIONS = {
 	$COUNTRYSHORT       => [0,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2],
 	$COUNTRYLONG        => [0,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2],
 	$REGION             => [0,  0,  0,  3,  3,  3,  3,  3,  3,  3,  3,  3,  3,  3,  3,  3,  3,  3,  3,  3,  3,  3,  3,  3,  3],
@@ -109,6 +108,9 @@ sub get_database_version {
 
 sub _get_by_pos {
 	my ( $obj,$ipaddr,$pos ) = @_;
+
+	return $INVALID_IP_ADDRESS
+		if ! $pos;
 
 	my ( $ipv,$ipnum ) = $obj->validate_ip( $ipaddr );
 
@@ -289,18 +291,6 @@ sub readFloat {
 	}
 }
 
-sub bytes2int {
-	my $binip = shift(@_);
-	my @array = split(//, $binip);
-	return 0 if ($#array != 15);
-	my $ip96_127 = unpack("V", $array[0] . $array[1] . $array[2] . $array[3]);
-	my $ip64_95 = unpack("V", $array[4] . $array[5] . $array[6] . $array[7]);
-	my $ip32_63 = unpack("V", $array[8] . $array[9] . $array[10] . $array[11]);
-	my $ip1_31 = unpack("V", $array[12] . $array[13] . $array[14] . $array[15]);
-
-	return ($ip1_31 * 4294967296 * 4294967296 * 4294967296) + ($ip32_63 * 4294967296 * 4294967296) + ($ip64_95 * 4294967296) + $ip96_127;
-}
-
 sub validate_ip {
 	my ( $obj,$ip ) = @_;
 	my $ipv = -1;
@@ -314,27 +304,6 @@ sub validate_ip {
 		$ipnum = $obj->ip2no($ip);
 	}
 	return ($ipv, $ipnum);
-}
-
-sub hex2int {
-	my ( $obj,$hexip ) = @_;
-
-	$hexip =~ s/\://g;
-
-	unless (length($hexip) == 32) {
-		return 0;
-	};
-
-	my $binip = unpack('B128', pack('H32', $hexip));
-	my ($n, $dec) = (Math::BigInt->new(1), Math::BigInt->new(0));
-
-	foreach (reverse (split('', $binip))) {
-		$_ && ($dec += $n);
-		$n *= 2;
-	}
-
-	$dec =~ s/^\+//;
-	return $dec;
 }
 
 sub ip2no {
@@ -354,7 +323,9 @@ sub name2ip {
   if ($host =~ $IPv4_re){
     $ip_address = $host;
   } else {
-    $ip_address = join('.', unpack('C4',(gethostbyname($host))[4]));
+	if ( my $ip = gethostbyname($host) ) {
+    	$ip_address = join('.', unpack('C4',($ip)[4]));
+	}
   }
   return $ip_address;
 }
@@ -376,6 +347,10 @@ __END__
 
 Geo::IP2Location::Lite - Lightweight version of Geo::IP2Location with IPv4
 support only
+
+=for html
+<a href='https://travis-ci.org/leejo/geo-ip2location-lite?branch=master'><img src='https://travis-ci.org/leejo/geo-ip2location-lite.svg?branch=master' alt='Build Status' /></a>
+<a href='https://coveralls.io/r/leejo/geo-ip2location-lite?branch=master'><img src='https://coveralls.io/repos/leejo/geo-ip2location-lite.png?branch=master' alt='Coverage Status' /></a>
 
 =head1 SYNOPSIS
 

@@ -12,10 +12,11 @@ WriteMakefile(
     LICENSE          => 'perl',
     PREREQ_PM        => {
         'bigint'     => 0, # bigint was first released with perl v5.8.0
-        'Readonly'   => 2,
     },
     TEST_REQUIRES => {
-        'Test::Most'       => 0.31,
+        'Test::More'      => 0.31,
+        'Test::Deep'      => 0.113,
+        'Test::Exception' => 0.32
     },
     META_MERGE => {
         resources => {

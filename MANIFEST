@@ -3,9 +3,11 @@ Makefile.PL
 LICENSE.TXT
 COPYING
 MANIFEST
-README
-t/0_module.t
-t/1_lookup.t
+README.md
+README.pod
 lib/Geo/IP2Location/Lite.pm
 samples/IP-COUNTRY-SAMPLE.BIN
 samples/WHERE_TO_DOWNLOAD_MORE_SAMPLES.TXT
+t/001_compiles_pod.t
+t/003_changes.t
+t/005_lookup.t
