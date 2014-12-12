@@ -24,7 +24,7 @@ throws_ok(
 
 throws_ok(
 	sub { Geo::IP2Location::Lite->open( 'bad_file_path' ) },
-	qr/\Qerror opening bad_file_path: No such file\E/,
+	qr/\Qerror opening bad_file_path: \E\w+/,
 	'open with bad file throws',
 );
 
