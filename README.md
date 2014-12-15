@@ -51,7 +51,7 @@ http://www.ip2location.com
 
 # VERSION
 
-0.02
+0.03
 
 # AUTHOR
 
@@ -60,6 +60,8 @@ like to contribute documentation, features, bug fixes, or anything else then
 please raise an issue / pull request:
 
     https://github.com/leejo/geo-ip2location-lite
+
+# LICENSE
 
 Copyright (c) 2014 IP2Location.com
 

@@ -21,7 +21,7 @@ use warnings;
 
 use bigint;
 
-$Geo::IP2Location::Lite::VERSION = '0.02';
+$Geo::IP2Location::Lite::VERSION = '0.03';
 
 my $UNKNOWN            = "UNKNOWN IP ADDRESS";
 my $NO_IP              = "MISSING IP ADDRESS";
@@ -394,7 +394,7 @@ http://www.ip2location.com
 
 =head1 VERSION
 
-0.02
+0.03
 
 =head1 AUTHOR
 
@@ -403,6 +403,8 @@ like to contribute documentation, features, bug fixes, or anything else then
 please raise an issue / pull request:
 
     https://github.com/leejo/geo-ip2location-lite
+
+=head1 LICENSE
 
 Copyright (c) 2014 IP2Location.com
 
