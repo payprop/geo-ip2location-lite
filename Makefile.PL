@@ -10,6 +10,7 @@ WriteMakefile(
     VERSION_FROM     => 'lib/Geo/IP2Location/Lite.pm',
     AUTHOR           => 'Lee Johnson <leejo@cpan.org>',
     LICENSE          => 'perl',
+    MIN_PERL_VERSION => '5.8.1',
     PREREQ_PM        => {
         'bigint'     => 0, # bigint was first released with perl v5.8.0
     },
