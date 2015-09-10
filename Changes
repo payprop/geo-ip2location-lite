@@ -1,5 +1,8 @@
 Revision history for Perl extension Geo::IP2Location::Lite
 
+0.04     2015-09-10
+        - Fix some warnings from uninitialized vars
+
 0.03     2014-12-15
         - Couple of non-impacting dist quality tweaks
 
