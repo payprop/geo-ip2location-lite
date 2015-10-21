@@ -23,8 +23,8 @@ WriteMakefile(
         resources => {
             license    => 'http://dev.perl.org/licenses/',
             homepage   => 'https://metacpan.org/module/Geo::IP2Location::Lite',
-            bugtracker => 'https://github.com/leejo/geo-ip2location-lite/issues',
-            repository => 'https://github.com/leejo/geo-ip2location-lite'
+            bugtracker => 'https://github.com/G3S/geo-ip2location-lite/issues',
+            repository => 'https://github.com/G3S/geo-ip2location-lite'
         },
     },
     test => {

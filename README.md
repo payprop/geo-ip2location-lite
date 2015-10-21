@@ -5,8 +5,8 @@ support only
 
 <div>
 
-    <a href='https://travis-ci.org/leejo/geo-ip2location-lite?branch=master'><img src='https://travis-ci.org/leejo/geo-ip2location-lite.svg?branch=master' alt='Build Status' /></a>
-    <a href='https://coveralls.io/r/leejo/geo-ip2location-lite?branch=master'><img src='https://coveralls.io/repos/leejo/geo-ip2location-lite/badge.png?branch=master' alt='Coverage Status' /></a>
+    <a href='https://travis-ci.org/G3S/geo-ip2location-lite?branch=master'><img src='https://travis-ci.org/G3S/geo-ip2location-lite.svg?branch=master' alt='Build Status' /></a>
+    <a href='https://coveralls.io/r/G3S/geo-ip2location-lite?branch=master'><img src='https://coveralls.io/repos/G3S/geo-ip2location-lite/badge.png?branch=master' alt='Coverage Status' /></a>
 </div>
 
 # SYNOPSIS
@@ -51,7 +51,7 @@ http://www.ip2location.com
 
 # VERSION
 
-0.05
+0.06
 
 # AUTHOR
 
@@ -59,7 +59,7 @@ Forked from Geo::IP2Location by Lee Johnson `leejo@cpan.org`. If you would
 like to contribute documentation, features, bug fixes, or anything else then
 please raise an issue / pull request:
 
-    https://github.com/leejo/geo-ip2location-lite
+    https://github.com/G3S/geo-ip2location-lite
 
 # LICENSE
 
