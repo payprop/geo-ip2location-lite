@@ -350,8 +350,8 @@ Geo::IP2Location::Lite - Lightweight version of Geo::IP2Location with IPv4
 support only
 
 =for html
-<a href='https://travis-ci.org/G3S/geo-ip2location-lite?branch=master'><img src='https://travis-ci.org/G3S/geo-ip2location-lite.svg?branch=master' alt='Build Status' /></a>
-<a href='https://coveralls.io/r/G3S/geo-ip2location-lite?branch=master'><img src='https://coveralls.io/repos/G3S/geo-ip2location-lite/badge.png?branch=master' alt='Coverage Status' /></a>
+<a href='https://travis-ci.org/Humanstate/geo-ip2location-lite?branch=master'><img src='https://travis-ci.org/Humanstate/geo-ip2location-lite.svg?branch=master' alt='Build Status' /></a>
+<a href='https://coveralls.io/r/Humanstate/geo-ip2location-lite?branch=master'><img src='https://coveralls.io/repos/Humanstate/geo-ip2location-lite/badge.png?branch=master' alt='Coverage Status' /></a>
 
 =head1 SYNOPSIS
 
@@ -403,7 +403,7 @@ Forked from Geo::IP2Location by Lee Johnson C<leejo@cpan.org>. If you would
 like to contribute documentation, features, bug fixes, or anything else then
 please raise an issue / pull request:
 
-    https://github.com/G3S/geo-ip2location-lite
+    https://github.com/Humanstate/geo-ip2location-lite
 
 =head1 LICENSE
 

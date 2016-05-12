@@ -1,7 +1,7 @@
 Revision history for Perl extension Geo::IP2Location::Lite
 
 0.06     2015-10-21
-        - Move github repo to G3S org
+        - Move github repo to Humanstate org
 
 0.04     2015-09-10
         - Fix some warnings from uninitialized vars
