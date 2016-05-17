@@ -51,7 +51,7 @@ http://www.ip2location.com
 
 # VERSION
 
-0.06
+0.07
 
 # AUTHOR
 

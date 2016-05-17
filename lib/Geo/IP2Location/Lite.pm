@@ -21,7 +21,7 @@ use warnings;
 
 use bigint;
 
-$Geo::IP2Location::Lite::VERSION = '0.06';
+$Geo::IP2Location::Lite::VERSION = '0.07';
 
 my $UNKNOWN            = "UNKNOWN IP ADDRESS";
 my $NO_IP              = "MISSING IP ADDRESS";
@@ -395,7 +395,7 @@ http://www.ip2location.com
 
 =head1 VERSION
 
-0.06
+0.07
 
 =head1 AUTHOR
 
