@@ -12,7 +12,6 @@ WriteMakefile(
     LICENSE          => 'perl',
     MIN_PERL_VERSION => '5.8.1',
     PREREQ_PM        => {
-        'bigint'     => 0, # bigint was first released with perl v5.8.0
     },
     TEST_REQUIRES => {
         'Test::More'      => 0.31,

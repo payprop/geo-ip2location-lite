@@ -19,9 +19,7 @@ package Geo::IP2Location::Lite;
 use strict;
 use warnings;
 
-use bigint;
-
-$Geo::IP2Location::Lite::VERSION = '0.07';
+$Geo::IP2Location::Lite::VERSION = '0.08';
 
 my $UNKNOWN            = "UNKNOWN IP ADDRESS";
 my $NO_IP              = "MISSING IP ADDRESS";
@@ -96,6 +94,7 @@ sub initialize {
 	$obj->{"databaseday"} = $obj->read8($obj->{filehandle}, 5);
 	$obj->{"ipv4databasecount"} = $obj->read32($obj->{filehandle}, 6);
 	$obj->{"ipv4databaseaddr"} = $obj->read32($obj->{filehandle}, 10);
+	$obj->{"ipv4indexbaseaddr"} = $obj->read32($obj->{filehandle}, 22);
 	return $obj;
 }
 
@@ -174,9 +173,19 @@ sub get_record {
 	my $baseaddr = $obj->{"ipv4databaseaddr"};
 	my $dbcount = $obj->{"ipv4databasecount"};
 	my $dbcolumn = $obj->{"databasecolumn"};
+	my $indexbaseaddr = $obj->{"ipv4indexbaseaddr"};
+
+	my $ipnum1_2 = int($ipnum >> 16);
+	my $indexaddr = $indexbaseaddr + ($ipnum1_2 << 3);
 
 	my $low = 0;
 	my $high = $dbcount;
+
+	if ($indexbaseaddr > 0) {
+		$low = $obj->read32($handle, $indexaddr);
+		$high = $obj->read32($handle, $indexaddr + 4);
+	}
+
 	my $mid = 0;
 	my $ipfrom = 0;
 	my $ipto = 0;
@@ -189,7 +198,7 @@ sub get_record {
 	}
 
 	while ($low <= $high) {
-		$mid = int(($low + $high)/2);
+		$mid = int(($low + $high) >> 1);
 		$ipfrom = $obj->read32($handle, $baseaddr + $mid * $dbcolumn * 4);
 		$ipto = $obj->read32($handle, $baseaddr + ($mid + 1) * $dbcolumn * 4);
 		if (($ipno >= $ipfrom) && ($ipno < $ipto)) {
@@ -395,7 +404,7 @@ http://www.ip2location.com
 
 =head1 VERSION
 
-0.07
+0.08
 
 =head1 AUTHOR
 
@@ -407,7 +416,7 @@ please raise an issue / pull request:
 
 =head1 LICENSE
 
-Copyright (c) 2014 IP2Location.com
+Copyright (c) 2016 IP2Location.com
 
 All rights reserved. This package is free software; It is licensed under the
 GPL.
