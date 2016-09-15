@@ -19,7 +19,7 @@ package Geo::IP2Location::Lite;
 use strict;
 use warnings;
 
-$Geo::IP2Location::Lite::VERSION = '0.08';
+$Geo::IP2Location::Lite::VERSION = '0.09';
 
 my $UNKNOWN            = "UNKNOWN IP ADDRESS";
 my $NO_IP              = "MISSING IP ADDRESS";
@@ -77,8 +77,8 @@ my $POSITIONS = {
 my $IPv4_re = qr/^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$/;
 
 sub open {
-	die "Geo::IP2Location::Lite::open() requires a database path name" unless( (@_ > 1) && ($_[1]) );
 	my ($class, $db_file) = @_;
+	$db_file || die "Geo::IP2Location::Lite::open() requires a database path name";
 	CORE::open( my $handle,'<',"$db_file" ) or die "Geo::IP2Location::Lite::open() error opening $db_file: $!";
 	binmode($handle);
 	my $obj = bless {filehandle => $handle}, $class;
@@ -153,6 +153,8 @@ sub get_all {
 sub get_record {
 	my ( $obj,$ipnum,$mode ) = @_;
 	my $dbtype= $obj->{"databasetype"};
+
+	$mode = 0 if ! defined $mode;
 
 	if ($ipnum eq "") {
 		if ($mode == $ALL) {
@@ -404,7 +406,7 @@ http://www.ip2location.com
 
 =head1 VERSION
 
-0.08
+0.09
 
 =head1 AUTHOR
 

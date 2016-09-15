@@ -4,9 +4,10 @@ use strict;
 use warnings;
 
 use Test::More;
+use Test::Deep;
 use Test::Exception;
 
-plan tests => 9;
+plan tests => 17;
 
 my $good_file = 'samples/IP-COUNTRY-SAMPLE.BIN';
 
@@ -28,9 +29,21 @@ throws_ok(
 	'open with bad file throws',
 );
 
+throws_ok(
+	sub { Geo::IP2Location::Lite->open( undef ) },
+	qr/\Qrequires a database path name\E/,
+	'open with no file throws',
+);
+
 isa_ok(
 	my $obj = Geo::IP2Location::Lite->open( $good_file ),
 	'Geo::IP2Location::Lite'
+);
+
+cmp_deeply(
+	[ $obj->get_all( 'bad' ) ],
+	[ 'INVALID IP ADDRESS' x 20 ],
+	"lookup with no arg"
 );
 
 is( $obj->get_country_short,'INVALID IP ADDRESS',"lookup with no arg" );
@@ -42,4 +55,36 @@ is(
 	$obj->get_latitude( '0.0.3.4' ),
 	'This parameter is unavailable in selected .BIN data file. Please upgrade data file.',
 	'data unsupported function'
+);
+
+note( '"private" methods' );
+
+is(
+	[ $obj->get_record( 1234,100 ) ]->[0],
+	'-',
+	"get_record with no arg (all)"
+);
+
+cmp_deeply(
+	$obj->get_record( '' ),
+	'MISSING IP ADDRESS',
+	"get_record with no arg"
+);
+
+cmp_deeply(
+	[ $obj->get_record( '',100 ) ],
+	[ 'MISSING IP ADDRESS' x 20 ],
+	"get_record with no arg (all)"
+);
+
+cmp_deeply(
+	$obj->get_record( 4294967295,1 ),
+	'??',
+	"get_record (max IP range)",
+);
+
+is( $obj->name2ip( undef ),'',"name2ip" );
+lives_ok(
+	sub { $obj->name2ip( 'localhost' ) },
+	"name2ip (localhost)"
 );

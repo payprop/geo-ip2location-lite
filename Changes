@@ -1,5 +1,8 @@
 Revision history for Perl extension Geo::IP2Location::Lite
 
+0.09     2016-09-15
+        - Increase test coverage
+
 0.08     2016-09-01
         - Bring up to date with recent changes in Geo::IP2Location
         - Support new BIN file with index to speed up query time
