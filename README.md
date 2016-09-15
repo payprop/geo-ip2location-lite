@@ -51,7 +51,7 @@ http://www.ip2location.com
 
 # VERSION
 
-0.07
+0.09
 
 # AUTHOR
 
@@ -63,7 +63,7 @@ please raise an issue / pull request:
 
 # LICENSE
 
-Copyright (c) 2014 IP2Location.com
+Copyright (c) 2016 IP2Location.com
 
 All rights reserved. This package is free software; It is licensed under the
 GPL.
