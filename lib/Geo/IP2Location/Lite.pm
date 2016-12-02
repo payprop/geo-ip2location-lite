@@ -19,7 +19,7 @@ package Geo::IP2Location::Lite;
 use strict;
 use warnings;
 
-$Geo::IP2Location::Lite::VERSION = '0.09';
+$Geo::IP2Location::Lite::VERSION = '0.10';
 
 my $UNKNOWN            = "UNKNOWN IP ADDRESS";
 my $NO_IP              = "MISSING IP ADDRESS";
@@ -336,7 +336,7 @@ sub name2ip {
     $ip_address = $host;
   } else {
 	if ( my $ip = gethostbyname($host) ) {
-    	$ip_address = join('.', unpack('C4',($ip)[4]));
+    	$ip_address = join('.', unpack('C4',($ip)[4]||''));
 	}
   }
   return $ip_address;
@@ -406,7 +406,7 @@ http://www.ip2location.com
 
 =head1 VERSION
 
-0.09
+0.10
 
 =head1 AUTHOR
 
